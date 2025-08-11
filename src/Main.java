@@ -1,35 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
 /*
-* Week 3:
-* Set Up Git
-*
-* Week 4:
-* Windows Compatibility
-*
-* Week 5:
-* Windows Compatibility
-*
-* Week 6:
-* Testing/Bug Fixing/Compatibility:
-* My Arch
-* My Windows 11
-* School Windows 11
-* Lilly Arch
-* Home Windows 10
-* My Windows XP
-* VM's
-*
-* Week 7:
+* Implement More Features
+* Testing
+* Code Cleanup
 * Commenting
-* Cleanup
-* Finish
-*
-* Week 8:
 * Release
 * */
 
@@ -138,8 +118,11 @@ class InfoPanel extends JPanel{
 
 public class Main {
     public static void main(String[] args) {
-        LinuxPC myPC = new LinuxPC();
-        Window window = new Window(myPC);
+        Window window = null;
+        //https://stackoverflow.com/a/36984585
+        File winDir = new File("/Windows");
+        if (winDir.exists() && winDir.isDirectory()) {window = new Window(new WindowPC());}
+        else {window = new Window(new LinuxPC());}
         window.init();
     }
 }

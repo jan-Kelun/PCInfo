@@ -23,9 +23,7 @@ public class LinuxPC extends PC{
         this.pcName = getSoloInfo(hostName);
     }
 
-    public void setUser() {
-        this.user = System.getenv("USER");
-    }
+    public void setUser() {this.user = System.getenv("USER");}
 
     public void setPcModel() {
         File productVersion = new File("/sys/devices/virtual/dmi/id/product_version");
