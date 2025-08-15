@@ -1,4 +1,5 @@
 import java.io.File;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -41,6 +42,10 @@ public class LinuxPC extends PC{
         HashMap<String,String> batInfoVars = interpretFiles(batInfo, "=");
         this.batCharge = batInfoVars.get("POWER_SUPPLY_STATUS").equals("Charging");
         this.batPercent = Integer.parseInt(batInfoVars.get("POWER_SUPPLY_CAPACITY"));
+        //https://unix.stackexchange.com/questions/759215/how-does-the-acpi-command-calculate-the-battery-life-when-charge-now-and-oth
+        long remSec = (long) ((Double.parseDouble(batInfoVars.get("POWER_SUPPLY_ENERGY_NOW")) / Double.parseDouble(batInfoVars.get("POWER_SUPPLY_POWER_NOW")))*3600);
+        Duration rem = Duration.ofSeconds(remSec);
+        this.batTime = String.format("%d Hours %d Minutes", rem.toHoursPart(),rem.toMinutesPart());
     }
 
 

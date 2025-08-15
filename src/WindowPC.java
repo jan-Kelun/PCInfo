@@ -28,6 +28,7 @@ public class WindowPC extends PC{
         Kernel32.INSTANCE.GetSystemPowerStatus(bs);
         batCharge = (bs.BatteryFlag==8);
         batPercent = bs.BatteryLifePercent;
+        batTime = bs.getBatteryLifeTime();
 
     }
 }

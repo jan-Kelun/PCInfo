@@ -43,6 +43,7 @@ class Window extends JFrame {
 
         batInfo.put("Charging", String.valueOf(pc.getBatCharge()));
         batInfo.put("Battery Percent", String.valueOf(pc.getBatPercent()));
+        batInfo.put("Estimated Time Remaining", pc.getBatTime());
         InfoPanel bat = new InfoPanel(batInfo);
         bat.update(batInfo);
         tabs.addTab("Battery", bat);
@@ -64,6 +65,7 @@ class Window extends JFrame {
         this.setVisible(true);
 
         update();
+
     }
 
     public void update() {
@@ -73,12 +75,16 @@ class Window extends JFrame {
                 pc.update();
                 batInfo.replace("Charging", String.valueOf(pc.getBatCharge()));
                 batInfo.replace("Battery Percent", String.valueOf(pc.getBatPercent()));
+                batInfo.replace("Estimated Time Remaining", pc.getBatTime());
                 clkInfo.replace("Date", pc.getDate());
                 clkInfo.replace("Time", pc.getTime());
                 clkInfo.replace("Time Zone", pc.getTimeZone());
                 clkInfo.replace("UTC", pc.getUtc());
                 bat.update(batInfo);
                 clk.update(clkInfo);
+                //https://stackoverflow.com/a/8853671
+                revalidate();
+                repaint();
             }
         };
         timer.scheduleAtFixedRate(update, 0L, 1L);
@@ -96,9 +102,9 @@ class InfoPanel extends JPanel{
         this.info = info;
     }
 
+
     public void update(LinkedHashMap<String,String> info) {
         this.info = info;
-        repaint();
     }
 
     @Override

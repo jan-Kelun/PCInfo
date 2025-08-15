@@ -15,6 +15,7 @@ public class PC {
 
     Boolean batCharge = true;
     int batPercent = -2;
+    String batTime = "Null";
 
     String date = "Null";
     String time = "Null";
@@ -52,7 +53,7 @@ public class PC {
     public void setCpu() {this.cpu = "Null";}
     public void setGpu(String gpu) {this.gpu = gpu;} //Unused
 
-    public void setBat() {this.batCharge = true; this.batPercent = -2;}
+    public void setBat() {this.batCharge = true; this.batPercent = -2; this.batTime = "Null";}
 
     public void setClock() {
         LocalDateTime clk = LocalDateTime.now();
@@ -74,6 +75,7 @@ public class PC {
 
     public Boolean getBatCharge() {return batCharge;}
     public int getBatPercent() {return batPercent;}
+    public String getBatTime() {return batTime;}
 
     public String getDate() {return date;}
     public String getTime() {return time;}
