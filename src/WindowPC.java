@@ -1,5 +1,7 @@
 import com.sun.jna.platform.win32.*;
 
+import java.util.Arrays;
+
 
 public class WindowPC extends PC{
     //https://stackoverflow.com/a/1607292
@@ -28,7 +30,8 @@ public class WindowPC extends PC{
         Kernel32.INSTANCE.GetSystemPowerStatus(bs);
         batCharge = (bs.BatteryFlag==8);
         batPercent = bs.BatteryLifePercent;
-        batTime = bs.getBatteryLifeTime();
+        int batSec = Integer.valueOf(bs.getBatteryLifeTime().split(" ")[0]);
+        batTime = String.format("%d Hours %d Minutes", batSec/3600, batSec%3600/60);
 
     }
 }
