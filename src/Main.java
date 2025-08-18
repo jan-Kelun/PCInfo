@@ -6,7 +6,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /*
-* Implement More Features
+* Week 5
+* Add More To About
+* Charging
 * Testing
 * Code Cleanup
 * Commenting

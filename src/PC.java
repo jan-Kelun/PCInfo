@@ -78,10 +78,11 @@ public class PC {
 
     public void setVol() throws IOException {
         for (FileStore store: FileSystems.getDefault().getFileStores()) {
-            this.volName = store.name();
-            this.volType = store.type();
-            this.volTotal = store.getTotalSpace();
-            this.volFree = store.getUnallocatedSpace();
+            if(store.getTotalSpace() > this. volTotal){
+                this.volName = store.name();
+                this.volType = store.type();
+                this.volTotal = store.getTotalSpace();
+                this.volFree = store.getUnallocatedSpace();}
         }
         this.volDis = String.format("%dGiB Used/%dGiB Total (%dGiB Left)", (this.volTotal - this.volFree)/1073741824 , this.volTotal/1073741824, this.volFree/1073741824);
     }
