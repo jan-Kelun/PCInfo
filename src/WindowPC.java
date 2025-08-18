@@ -32,7 +32,6 @@ public class WindowPC extends PC{
         batPercent = bs.BatteryLifePercent;
         int batSec = Integer.valueOf(bs.getBatteryLifeTime().split(" ")[0]);
         batTime = String.format("%d Hours %d Minutes", batSec/3600, batSec%3600/60);
-
     }
 }
 

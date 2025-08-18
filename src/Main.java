@@ -55,6 +55,13 @@ class Window extends JFrame {
         clk.update(clkInfo);
         tabs.addTab("Date/Time", clk);
 
+        LinkedHashMap<String,String> volInfo = new LinkedHashMap<>();
+        volInfo.put("Current Partition Name", pc.getVolName());
+        volInfo.put("Current File System", pc.getVolType());
+        volInfo.put("Space", pc.getVolDis());
+        InfoPanel vol = new InfoPanel(volInfo);
+        tabs.addTab("Storage", vol);
+
         LinkedHashMap<String,String> aboutInfo = new LinkedHashMap<>();
         aboutInfo.put("A", "Created by Caleb Henry Johnston");
         InfoPanel about = new InfoPanel(aboutInfo);

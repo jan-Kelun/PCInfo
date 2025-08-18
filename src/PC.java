@@ -1,3 +1,8 @@
+import java.io.IOException;
+import java.nio.file.FileStore;
+import java.nio.file.FileSystems;
+import java.nio.file.attribute.FileAttributeView;
+import java.nio.file.attribute.FileStoreAttributeView;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
@@ -22,6 +27,12 @@ public class PC {
     String timeZone = "Null";
     String utc = "Null";
 
+    String volName = "Null";
+    String volType = "Null";
+    long volTotal = -2;
+    long volFree = -2;
+    String volDis = "Null";
+
 
 
     public PC() {
@@ -37,6 +48,7 @@ public class PC {
         try {setCpu();} catch (Exception ignored) {}
         try {setBat();} catch (Exception ignored) {}
         try {setClock();} catch (Exception ignored) {}
+        try {setVol();} catch (Exception ignored) {}
     }
 
     public void update() {
@@ -64,6 +76,16 @@ public class PC {
         this.utc = LocalDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("hh:mm.ss a (dd/MM/yyyy)"));
     }
 
+    public void setVol() throws IOException {
+        for (FileStore store: FileSystems.getDefault().getFileStores()) {
+            this.volName = store.name();
+            this.volType = store.type();
+            this.volTotal = store.getTotalSpace();
+            this.volFree = store.getUnallocatedSpace();
+        }
+        this.volDis = String.format("%dGiB Used/%dGiB Total (%dGiB Left)", (this.volTotal - this.volFree)/1073741824 , this.volTotal/1073741824, this.volFree/1073741824);
+    }
+
     public int getOsType() {return osType;}
 
     public String getOsName() {return osName;}
@@ -81,4 +103,9 @@ public class PC {
     public String getTime() {return time;}
     public String getTimeZone() {return timeZone;}
     public String getUtc() {return utc;}
+
+    public String getVolName() {return volName;}
+    public String getVolType() {return volType;}
+    public String getVolDis() {return volDis;}
+
 }
