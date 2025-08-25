@@ -10,6 +10,23 @@ import java.io.IOException;
 import java.util.*;
 import java.util.Timer;
 
+/*
+Check What Happens When Charging
+    Fix Any Issues
+Test Code On Various Devices
+    Fix Any Issues
+Clean Up Code
+Comment Code
+Finished For First Public Release
+GitHub Page
+    Create Read Me
+    Set Up Page
+    Make Public
+Release
+    Export
+    Put As Release
+*/
+
 //WIP
 class Window extends JFrame {
     //Variables
