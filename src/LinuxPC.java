@@ -1,3 +1,4 @@
+//Imports
 import java.io.File;
 import java.time.Duration;
 import java.util.HashMap;
@@ -5,6 +6,7 @@ import java.util.Scanner;
 
 //https://github.com/dylanaraps/neofetch/blob/master/neofetch
 
+//Override Base Methods With Linux OS Methods
 public class LinuxPC extends PC{
 
     public LinuxPC() {

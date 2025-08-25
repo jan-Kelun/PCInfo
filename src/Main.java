@@ -1,3 +1,4 @@
+//Imports
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -9,16 +10,9 @@ import java.io.IOException;
 import java.util.*;
 import java.util.Timer;
 
-/*
-* Week 5
-* Charging
-* Testing
-* Code Cleanup
-* Commenting
-* Release
-* */
-
+//WIP
 class Window extends JFrame {
+    //Variables
     PC pc;
     LinkedHashMap<String,String> batInfo = new LinkedHashMap<>();
     LinkedHashMap<String,String> clkInfo = new LinkedHashMap<>();

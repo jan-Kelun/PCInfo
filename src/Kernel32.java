@@ -1,4 +1,5 @@
 //https://stackoverflow.com/a/3434962
+//ALL THIS CODE IS NOT MADE BY ME, IT IS DIRECTLY COPIED FROM ABOVE LINK
 import com.sun.jna.Native;
 import com.sun.jna.Structure;
 import com.sun.jna.win32.StdCallLibrary;

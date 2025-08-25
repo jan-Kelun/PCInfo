@@ -1,8 +1,7 @@
+//Imports
 import com.sun.jna.platform.win32.*;
 
-import java.util.Arrays;
-
-
+//Override Base Methods With Window OS Methods
 public class WindowPC extends PC{
     //https://stackoverflow.com/a/1607292
     public WindowPC() {
@@ -21,17 +20,18 @@ public class WindowPC extends PC{
 
     //https://stackoverflow.com/a/6287763
     //https://stackoverflow.com/a/7624487
+    //Uses Windows Registry Values
     public void setPcModel() {this.pcModel = Advapi32Util.registryGetStringValue(WinReg.HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System\\BIOS", "SystemVersion");}
-
     public void setCpu() {this.cpu = Advapi32Util.registryGetStringValue(WinReg.HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", "ProcessorNameString");}
 
     public void setBat() {
+        //WIP
         Kernel32.SYSTEM_POWER_STATUS bs = new Kernel32.SYSTEM_POWER_STATUS();
         Kernel32.INSTANCE.GetSystemPowerStatus(bs);
         batCharge = (bs.BatteryFlag==8);
         batPercent = bs.BatteryLifePercent;
-        int batSec = Integer.valueOf(bs.getBatteryLifeTime().split(" ")[0]);
-        batTime = String.format("%d Hours %d Minutes", batSec/3600, batSec%3600/60);
+        int batSec = Integer.valueOf(bs.getBatteryLifeTime().split(" ")[0]); //WIP
+        batTime = String.format("%d Hours %d Minutes", batSec/3600, batSec%3600/60); //WIP
     }
 }
 
