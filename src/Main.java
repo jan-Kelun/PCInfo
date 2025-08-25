@@ -1,13 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.font.TextAttribute;
 import java.io.File;
-import java.util.LinkedHashMap;
+import java.io.IOException;
+import java.util.*;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /*
 * Week 5
-* Add More To About
 * Charging
 * Testing
 * Code Cleanup
@@ -65,8 +68,14 @@ class Window extends JFrame {
         tabs.addTab("Storage", vol);
 
         LinkedHashMap<String,String> aboutInfo = new LinkedHashMap<>();
-        aboutInfo.put("A", "Created by Caleb Henry Johnston");
-        InfoPanel about = new InfoPanel(aboutInfo);
+        aboutInfo.put("A", "Displays information about your device.");
+        aboutInfo.put("Note", "Only Battery and Date/Time update.");
+        aboutInfo.put("B", "Created by Caleb Henry Johnston for a CS3 class.");
+        aboutInfo.put("C", "Made for Windows and Linux.");
+        aboutInfo.put("D", "If an issue occurs, send an issue report.");
+        aboutInfo.put("Github", "https://github.com/jan-Kelun/PCInfo");
+        aboutInfo.put("Version", "Pre-release");
+        InfoPanel about = new InfoPanel(aboutInfo, pc.osType);
         tabs.addTab("About", about);
 
 
@@ -100,17 +109,23 @@ class Window extends JFrame {
     }
 }
 
-class InfoPanel extends JPanel{
+class InfoPanel extends JPanel implements MouseListener, MouseMotionListener {
     LinkedHashMap<String,String> info;
+    int os = -3;
 
     public InfoPanel() {
-
     }
 
     public InfoPanel(LinkedHashMap<String,String> info) {
         this.info = info;
     }
 
+    public InfoPanel(LinkedHashMap<String,String> info, int os) {
+        this.info = info;
+        addMouseListener(this);
+        addMouseMotionListener(this);
+        this.os = os;
+    }
 
     public void update(LinkedHashMap<String,String> info) {
         this.info = info;
@@ -121,11 +136,90 @@ class InfoPanel extends JPanel{
         super.paint(g);
         Font font = new Font(Font.MONOSPACED, Font.BOLD, 20);
         g.setFont(font);
+        //https://stackoverflow.com/a/21331332
+        FontMetrics metrics = g.getFontMetrics();
+        //g.setColor(Color.blue);
+        //g.drawRect(92,98,425,20);
+        g.setColor(Color.black);
         int y = 15;
         for (String i : info.keySet()) {
-            if(i.length() > 1) g.drawString(String.format("%s:%s", i, info.get(i)),10,y);
-            if(i.length() == 1) g.drawString(String.format("%s", info.get(i)),10,y);
+            if(i.equals("Github")){
+                g.drawString(String.format("%s:", i),10,y);
+                g.setColor(Color.BLUE);
+                //https://stackoverflow.com/a/15892859
+                Map attributes = font.getAttributes();
+                attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+                g.setFont(font.deriveFont(attributes));
+                g.drawString(String.format("%s", info.get(i)),10+metrics.stringWidth("Github:"),y);
+                g.setColor(Color.BLACK);
+                g.setFont(font);
+            }
+            else if(i.length() > 1) g.drawString(String.format("%s:%s", i, info.get(i)),10,y);
+            else if(i.length() == 1) g.drawString(String.format("%s", info.get(i)),10,y);
             y+=20;
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent mouseEvent) {
+        int x = mouseEvent.getX();
+        int y = mouseEvent.getY();
+        //https://stackoverflow.com/q/5226212
+        Runtime rt = Runtime.getRuntime();
+        if(x>91 && x<518 && y>97 && y<119) {
+            switch (os) {
+                case 0 -> {
+                    try {
+                        rt.exec("rundll32 url.dll,FileProtocolHandler https://github.com/jan-Kelun/PCInfo");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                case 1 -> {
+                    try {
+                        rt.exec("xdg-open https://github.com/jan-Kelun/PCInfo");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent mouseEvent) {
+        //https://stackoverflow.com/a/7359252
+        int x = mouseEvent.getX();
+        int y = mouseEvent.getY();
+        if (x > 91 && x < 518 && y > 97 && y < 119) {
+            setCursor(new Cursor(Cursor.HAND_CURSOR));
+        } else {
+            setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
     }
 }
