@@ -40,7 +40,7 @@ class Window extends JFrame {
     public Window(PC pc) {
         this.pc = pc;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setBounds(30,30,600,200);
+        this.setBounds(30,30,600,205);
         this.setTitle("INFO");
     }
 
@@ -179,7 +179,7 @@ class InfoPanel extends JPanel implements MouseListener, MouseMotionListener {
             switch (os) {
                 case 0 -> {
                     try {
-                        rt.exec(new String[]{"rundll32 url.dll,FileProtocolHandler https://github.com/jan-Kelun/PCInfo"});
+                        rt.exec(new String[]{"rundll32", "url.dll,FileProtocolHandler", "https://github.com/jan-Kelun/PCInfo"});
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
