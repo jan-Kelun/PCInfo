@@ -17,7 +17,6 @@ public class PC {
     String user = "Null"; //Current Username
     String pcModel = "Null"; //PC Model
     String cpu = "Null"; //CPU Name
-    String gpu; //Unused
 
     Boolean batCharge = true; //If PC is Charging
     int batPercent = -2; //Battery Percent
@@ -67,7 +66,6 @@ public class PC {
     public void setUser() {this.user = "Null";}
     public void setPcModel() {this.pcModel = "Null";}
     public void setCpu() {this.cpu = "Null";}
-    public void setGpu(String gpu) {this.gpu = gpu;} //Unused
 
     public void setBat() {this.batCharge = true; this.batPercent = -2; this.batTime = "Null";}
 
@@ -104,7 +102,6 @@ public class PC {
     public String getUser() {return user;}
     public String getPcModel() {return pcModel;}
     public String getCpu() {return cpu;}
-    public String getGpu() {return gpu;} //Unused
 
     public Boolean getBatCharge() {return batCharge;}
     public int getBatPercent() {return batPercent;}

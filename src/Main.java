@@ -69,7 +69,7 @@ class Window extends JFrame {
         aboutInfo.put("D", "If an issue occurs, send an issue report.");
         aboutInfo.put("Github", "https://github.com/jan-Kelun/PCInfo");
         aboutInfo.put("Version", "Pre-release");
-        InfoPanel about = new InfoPanel(aboutInfo, pc.osType);
+        InfoPanel about = new InfoPanel(aboutInfo, pc.getOsType());
         tabs.addTab("About", about);
 
 
@@ -132,8 +132,6 @@ class InfoPanel extends JPanel implements MouseListener, MouseMotionListener {
         g.setFont(font);
         //https://stackoverflow.com/a/21331332
         FontMetrics metrics = g.getFontMetrics();
-        //g.setColor(Color.blue);
-        //g.drawRect(92,98,425,20);
         g.setColor(Color.black);
         int y = 15;
         for (String i : info.keySet()) {
@@ -164,14 +162,14 @@ class InfoPanel extends JPanel implements MouseListener, MouseMotionListener {
             switch (os) {
                 case 0 -> {
                     try {
-                        rt.exec("rundll32 url.dll,FileProtocolHandler https://github.com/jan-Kelun/PCInfo");
+                        rt.exec(new String[]{"rundll32 url.dll,FileProtocolHandler https://github.com/jan-Kelun/PCInfo"});
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                 }
                 case 1 -> {
                     try {
-                        rt.exec("xdg-open https://github.com/jan-Kelun/PCInfo");
+                        rt.exec(new String[]{"xdg-open", "https://github.com/jan-Kelun/PCInfo"});
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -221,7 +219,7 @@ class InfoPanel extends JPanel implements MouseListener, MouseMotionListener {
 
 public class Main {
     public static void main(String[] args) {
-        Window window = null;
+        Window window;
         //https://stackoverflow.com/a/36984585
         File winDir = new File("/Windows");
         if (winDir.exists() && winDir.isDirectory()) {window = new Window(new WindowPC());}

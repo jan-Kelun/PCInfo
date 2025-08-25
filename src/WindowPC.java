@@ -30,7 +30,7 @@ public class WindowPC extends PC{
         Kernel32.INSTANCE.GetSystemPowerStatus(bs);
         batCharge = (bs.BatteryFlag==8);
         batPercent = bs.BatteryLifePercent;
-        int batSec = Integer.valueOf(bs.getBatteryLifeTime().split(" ")[0]); //WIP
+        int batSec = Integer.parseInt(bs.getBatteryLifeTime().split(" ")[0]); //WIP
         batTime = String.format("%d Hours %d Minutes", batSec/3600, batSec%3600/60); //WIP
     }
 }
