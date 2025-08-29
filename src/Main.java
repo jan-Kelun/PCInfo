@@ -7,25 +7,19 @@ import java.awt.event.MouseMotionListener;
 import java.awt.font.TextAttribute;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Timer;
+import java.util.TimerTask;
 
 /*
-Check What Happens When Charging
-    Fix Any Issues
-Test Code On Various Devices
-    Fix Any Issues
-Clean Up Code
-Comment Code
-Finished For First Public Release
-GitHub Page
-    Create Read Me
-    Set Up Page
-    Make Public
-Release
-    Export
-    Put As Release
-*/
+Fix Charging
+Commenting
+Testing
+Fixing
+Releasing
+Arch
+ */
 
 //WIP
 class Window extends JFrame {
@@ -238,6 +232,7 @@ public class Main {
     public static void main(String[] args) {
         Window window;
         //https://stackoverflow.com/a/36984585
+        //Checks to determine if Windows or Linux by checking if root Windows directory exists (might not work in specific circumstances)
         File winDir = new File("/Windows");
         if (winDir.exists() && winDir.isDirectory()) {window = new Window(new WindowPC());}
         else {window = new Window(new LinuxPC());}

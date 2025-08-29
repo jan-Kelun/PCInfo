@@ -9,12 +9,12 @@ import java.util.List;
 
 public interface Kernel32 extends StdCallLibrary {
 
-    public Kernel32 INSTANCE = Native.load("Kernel32", Kernel32.class);
+    Kernel32 INSTANCE = Native.load("Kernel32", Kernel32.class);
 
     /**
      * see https://learn.microsoft.com/en-us/windows/win32/api/winbase/ns-winbase-system_power_status
      */
-    public class SYSTEM_POWER_STATUS extends Structure {
+    class SYSTEM_POWER_STATUS extends Structure {
         public byte ACLineStatus;
         public byte BatteryFlag;
         public byte BatteryLifePercent;
@@ -82,18 +82,17 @@ public interface Kernel32 extends StdCallLibrary {
 
         @Override
         public String toString() {
-            StringBuilder sb = new StringBuilder();
-            sb.append("ACLineStatus: " + getACLineStatusString() + "\n");
-            sb.append("Battery Flag: " + getBatteryFlagString() + "\n");
-            sb.append("Battery Life: " + getBatteryLifePercent() + "\n");
-            sb.append("Battery Left: " + getBatteryLifeTime() + "\n");
-            sb.append("Battery Full: " + getBatteryFullLifeTime() + "\n");
-            return sb.toString();
+            String sb = "ACLineStatus: " + getACLineStatusString() + "\n" +
+                    "Battery Flag: " + getBatteryFlagString() + "\n" +
+                    "Battery Life: " + getBatteryLifePercent() + "\n" +
+                    "Battery Left: " + getBatteryLifeTime() + "\n" +
+                    "Battery Full: " + getBatteryFullLifeTime() + "\n";
+            return sb;
         }
     }
 
     /**
      * Fill the structure.
      */
-    public int GetSystemPowerStatus(SYSTEM_POWER_STATUS result);
+    int GetSystemPowerStatus(SYSTEM_POWER_STATUS result);
 }

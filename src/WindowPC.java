@@ -25,13 +25,13 @@ public class WindowPC extends PC{
     public void setCpu() {this.cpu = Advapi32Util.registryGetStringValue(WinReg.HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", "ProcessorNameString");}
 
     public void setBat() {
-        //WIP
+        //Retrieves Current Power Status
         Kernel32.SYSTEM_POWER_STATUS bs = new Kernel32.SYSTEM_POWER_STATUS();
         Kernel32.INSTANCE.GetSystemPowerStatus(bs);
         batCharge = (bs.BatteryFlag==8);
         batPercent = bs.BatteryLifePercent;
-        int batSec = Integer.parseInt(bs.getBatteryLifeTime().split(" ")[0]); //WIP
-        batTime = String.format("%d Hours %d Minutes", batSec/3600, batSec%3600/60); //WIP
+        int batSec = Integer.parseInt(bs.getBatteryLifeTime().split(" ")[0]); //Gets Seconds Left of Battery Life
+        batTime = String.format("%d Hours %d Minutes", batSec/3600, batSec%3600/60); //Turns Seconds Left Into a String
     }
 }
 

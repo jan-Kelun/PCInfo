@@ -16,25 +16,25 @@ public class LinuxPC extends PC{
     public void setOsType() {this.osType = 1;}
 
     public void setOsName() {
-        File osRelease = new File("/etc/os-release");
+        File osRelease = new File("/etc/os-release"); //Contents eg. NAME="Arch Linux"
         HashMap<String,String> osReleaseVars = interpretFiles(osRelease, "=");
         this.osName = osReleaseVars.get("NAME");
     }
 
     public void setPcName() {
-        File hostName = new File("/etc/hostname");
+        File hostName = new File("/etc/hostname"); //Contents eg. CalebJohnston
         this.pcName = getSoloInfo(hostName);
     }
 
     public void setUser() {this.user = System.getenv("USER");}
 
     public void setPcModel() {
-        File productVersion = new File("/sys/devices/virtual/dmi/id/product_version");
+        File productVersion = new File("/sys/devices/virtual/dmi/id/product_version"); //Contents eg. IdeaPad Flex 5 14ALC7
         this.pcModel = getSoloInfo(productVersion);
     }
 
     public void setCpu() {
-        File cpuInfo = new File("/proc/cpuinfo");
+        File cpuInfo = new File("/proc/cpuinfo"); //Contents eg. model name	: AMD Ryzen 7 5700U with Radeon Graphics
         HashMap<String,String> cpuInfoVars = interpretFiles(cpuInfo, ":");
         this.cpu = cpuInfoVars.get("model name\t").stripLeading();
     }
@@ -50,7 +50,7 @@ public class LinuxPC extends PC{
         this.batTime = String.format("%d Hours %d Minutes", rem.toHoursPart(),rem.toMinutesPart());
     }
 
-
+    //Returns Content of a File, Used if it Only Contains the Information
     private String getSoloInfo(File file) {
         String info = "";
         try {
@@ -63,6 +63,8 @@ public class LinuxPC extends PC{
         return info;
     }
 
+    //Turns a File Into a Hashmap Based on a Separator
+    //eg. "Something=Placeholder (new line) Somethingelse=Whatever" -> {"Something": "Placeholder", "Somethingelse": "Whatever"}
     private HashMap<String,String> interpretFiles (File file, String sep) {
         HashMap<String, String> vars = new HashMap<>();
         try {
