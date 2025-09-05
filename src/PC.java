@@ -20,7 +20,7 @@ public class PC {
 
     Boolean batCharge = true; //If PC is Charging
     int batPercent = -2; //Battery Percent
-    String batTime = "Null"; //Time Left Till Flat
+    String batTime = "Unknown"; //Time Left Till Flat
 
     String date = "Null";
     String time = "Null";

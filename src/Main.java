@@ -13,7 +13,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /*
-Fix Charging
 Release jar
 Test
 Fix Problems
