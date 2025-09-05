@@ -14,14 +14,18 @@ import java.util.TimerTask;
 
 /*
 Fix Charging
-Commenting
-Testing
-Fixing
-Releasing
-Arch
+Release jar
+Test
+Fix Problems
+Various Finishing
+README
+LICENSING
+GITHUB FINISH
+Publish
+Create Arch Package
  */
 
-//WIP
+//Represents Entire Window
 class Window extends JFrame {
     //Variables
     PC pc;
@@ -114,9 +118,11 @@ class Window extends JFrame {
     }
 }
 
+//Represents Content of a Section
 class InfoPanel extends JPanel implements MouseListener, MouseMotionListener {
     LinkedHashMap<String,String> info;
     int os = -3;
+    boolean show = true;
 
     public InfoPanel() {
     }
@@ -146,6 +152,7 @@ class InfoPanel extends JPanel implements MouseListener, MouseMotionListener {
         g.setColor(Color.black);
         int y = 15;
         for (String i : info.keySet()) {
+            if(i.equals("Charging")) {show = !Boolean.parseBoolean(info.get(i));}
             if(i.equals("Github")){
                 g.drawString(String.format("%s:", i),10,y);
                 g.setColor(Color.BLUE);
@@ -157,7 +164,8 @@ class InfoPanel extends JPanel implements MouseListener, MouseMotionListener {
                 g.setColor(Color.BLACK);
                 g.setFont(font);
             }
-            else if(i.length() > 1) g.drawString(String.format("%s:%s", i, info.get(i)),10,y);
+            else if(i.length() > 1) {
+                if(!(i.equals("Estimated Time Remaining") && !show)) {g.drawString(String.format("%s:%s", i, info.get(i)),10,y);}}
             else if(i.length() == 1) g.drawString(String.format("%s", info.get(i)),10,y);
             y+=20;
         }
