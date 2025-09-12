@@ -12,18 +12,6 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/*
-Release jar
-Test
-Fix Problems
-Various Finishing
-README
-LICENSING
-GITHUB FINISH
-Publish
-Create Arch Package
- */
-
 //Represents Entire Window
 class Window extends JFrame {
     //Variables
@@ -38,7 +26,7 @@ class Window extends JFrame {
         this.pc = pc;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setBounds(30,30,600,205);
-        this.setTitle("INFO");
+        this.setTitle("PCInfo");
     }
 
     public void init() {
@@ -82,7 +70,7 @@ class Window extends JFrame {
         aboutInfo.put("C", "Made for Windows and Linux.");
         aboutInfo.put("D", "If an issue occurs, send an issue report.");
         aboutInfo.put("Github", "https://github.com/jan-Kelun/PCInfo");
-        aboutInfo.put("Version", "Pre-release");
+        aboutInfo.put("Version", "Pre-release 2");
         InfoPanel about = new InfoPanel(aboutInfo, pc.getOsType());
         tabs.addTab("About", about);
 
@@ -164,13 +152,14 @@ class InfoPanel extends JPanel implements MouseListener, MouseMotionListener {
                 g.setFont(font);
             }
             else if(i.length() > 1) {
-                if(!(i.equals("Estimated Time Remaining") && !show)) {g.drawString(String.format("%s:%s", i, info.get(i)),10,y);}}
+                if(!(i.equals("Estimated Time Remaining") && !show) && !(i.equals("Battery Percent") && info.get(i).equals("-1"))) {g.drawString(String.format("%s:%s", i, info.get(i)),10,y);}}
             else if(i.length() == 1) g.drawString(String.format("%s", info.get(i)),10,y);
             y+=20;
         }
     }
 
     @Override
+    //Opens link when clicked
     public void mouseClicked(MouseEvent mouseEvent) {
         int x = mouseEvent.getX();
         int y = mouseEvent.getY();
@@ -222,6 +211,7 @@ class InfoPanel extends JPanel implements MouseListener, MouseMotionListener {
     }
 
     @Override
+    //Change cursor when hovering over link
     public void mouseMoved(MouseEvent mouseEvent) {
         //https://stackoverflow.com/a/7359252
         int x = mouseEvent.getX();
