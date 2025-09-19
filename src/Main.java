@@ -164,7 +164,7 @@ class InfoPanel extends JPanel implements MouseListener, MouseMotionListener {
         int y = mouseEvent.getY();
         //https://stackoverflow.com/q/5226212
         Runtime rt = Runtime.getRuntime();
-        if(x>91 && x<518 && y>97 && y<119) {
+        if(x>91 && x<518 && y>77 && y<99) {
             switch (os) {
                 case 0 -> {
                     try {
@@ -215,7 +215,7 @@ class InfoPanel extends JPanel implements MouseListener, MouseMotionListener {
         //https://stackoverflow.com/a/7359252
         int x = mouseEvent.getX();
         int y = mouseEvent.getY();
-        if (x > 91 && x < 518 && y > 97 && y < 119) {
+        if (x > 91 && x < 518 && y > 77 && y < 99) {
             setCursor(new Cursor(Cursor.HAND_CURSOR));
         } else {
             setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
