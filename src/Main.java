@@ -57,8 +57,8 @@ class Window extends JFrame {
         tabs.addTab("Date/Time", clk);
 
         LinkedHashMap<String,String> volInfo = new LinkedHashMap<>();
-        volInfo.put("Current Partition Name", pc.getVolName());
-        volInfo.put("Current File System", pc.getVolType());
+        volInfo.put("Biggest Accessible Partition", pc.getVolName());
+        volInfo.put("File System", pc.getVolType());
         volInfo.put("Space", pc.getVolDis());
         InfoPanel vol = new InfoPanel(volInfo);
         tabs.addTab("Storage", vol);
@@ -66,11 +66,10 @@ class Window extends JFrame {
         LinkedHashMap<String,String> aboutInfo = new LinkedHashMap<>();
         aboutInfo.put("A", "Displays information about your device.");
         aboutInfo.put("Note", "Only Battery and Date/Time update.");
-        aboutInfo.put("B", "Created by Caleb Henry Johnston for a CS3 class.");
         aboutInfo.put("C", "Made for Windows and Linux.");
         aboutInfo.put("D", "If an issue occurs, send an issue report.");
         aboutInfo.put("Github", "https://github.com/jan-Kelun/PCInfo");
-        aboutInfo.put("Version", "Pre-release 2");
+        aboutInfo.put("Version", "1.0.0");
         InfoPanel about = new InfoPanel(aboutInfo, pc.getOsType());
         tabs.addTab("About", about);
 

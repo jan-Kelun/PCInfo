@@ -1,6 +1,6 @@
 # PCInfo
 ## General
-A simple Java program that displays system info e.g. PC, User, CPU, Battery Percent, Date/Time, Storage etc. Made for a school project.
+A simple Java program that displays system info e.g. PC, User, CPU, Battery Percent, Date/Time, Storage etc.
 ## Information
 - General
   - Operating System
@@ -18,8 +18,8 @@ A simple Java program that displays system info e.g. PC, User, CPU, Battery Perc
   - Time Zone
   - UTC
 - Storage
-  - Current Partition Name
-  - Current File System
+  - Biggest Accessible Partition
+  - File System
   - Space
 - About   
 ## Download & Running
